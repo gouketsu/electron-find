@@ -53,6 +53,16 @@ class Find extends EventEmitter {
     })
     print(`[Find] startFind text=${text} forward=${forward} matchCase=${matchCase}`)
   }
+  
+  refreshFind (matchCase = false) {
+    if (!this.isFinding()) throw new Error('Finding did not start yet !')
+    this[requestId] = this[wcs].findInPage(this[preText], {
+      true,
+      matchCase
+    })
+    print(`[Find] refreshFind text=${this[preText]} forward=true matchCase=${matchCase}`)
+    
+  }
   findNext (forward, matchCase = false) {
     if (!this.isFinding()) throw new Error('Finding did not start yet !')
     this[requestId] = this[wcs].findInPage(this[preText], {
