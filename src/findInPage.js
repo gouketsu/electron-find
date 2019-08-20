@@ -131,6 +131,14 @@ class FindInPage extends Find{
     this.closeFindWindow()
     removeElement.call(this)
   }
+  
+  refresh() {
+    if (this[hasOpened]) {
+     
+      return true    
+    }
+    return false
+  }
 }
 
 function creatElement (className = '', tag = 'div') {
