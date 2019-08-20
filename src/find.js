@@ -65,13 +65,14 @@ class Find extends EventEmitter {
     
   }
   findNext (forward, matchCase = false) {
-    if (!this.isFinding()) throw new Error('Finding did not start yet !')
-    this[requestId] = this[wcs].findInPage(this[preText], {
-      forward,
-      matchCase,
-      findNext: true
-    })
-    print(`[Find] findNext text=${this[preText]} forward=${forward} matchCase=${matchCase}`)
+    if (this.isFinding()) {
+      this[requestId] = this[wcs].findInPage(this[preText], {
+        forward,
+        matchCase,
+        findNext: true
+      })
+      print(`[Find] findNext text=${this[preText]} forward=${forward} matchCase=${matchCase}`)
+    }
   }
   stopFind (action) {
     stopActions.includes(action) ? '' : action = 'clearSelection'
