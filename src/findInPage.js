@@ -134,7 +134,7 @@ class FindInPage extends Find{
   
   refresh() {
     if (this[hasOpened]) {
-     
+      this.findRefresh(this[matchCase])
       return true    
     }
     return false
