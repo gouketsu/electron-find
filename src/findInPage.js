@@ -60,7 +60,7 @@ class FindInPage extends Find{
     this[config] = {}
     this[events] = []
     this.parentElement = options.parentElement ? options.parentElement : document.body
-    if (option.onBody) {
+    if (options.onBody) {
       this.resultElement = document.body
     } else {
       this.resultElement = this.parentElement
