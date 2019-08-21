@@ -143,6 +143,7 @@ class FindInPage extends Find{
       if (!text) return
       //findKeep.call(this, false)
       //findKeep.call(this, true)
+      wrapInput(this[findInput], this[findCase], 100)
       this.startFind(text, true, this[matchCase])
       return true  
     }
