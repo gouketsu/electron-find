@@ -141,8 +141,9 @@ class FindInPage extends Find{
     if (this[hasOpened]) {
       let text = this[findInput].value
       if (!text) return
-      findKeep.call(this, false)
-      findKeep.call(this, true)
+      //findKeep.call(this, false)
+      //findKeep.call(this, true)
+      this.startFind(text, true, this[matchCase])
       return true  
     }
     return false
