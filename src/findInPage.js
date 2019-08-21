@@ -138,13 +138,15 @@ class FindInPage extends Find{
   }
   
   refresh() {
-    if (this[hasOpened]) {
+     if (this[hasOpened]) {
       let text = this[findInput].value
       if (!text) return
       //findKeep.call(this, false)
       //findKeep.call(this, true)
-      wrapInput(this[findInput], this[findCase], 100)
-      this.startFind(text, true, this[matchCase])
+      wrapInputRefresh(this[findInput], this[findCase])
+      setTimeout(() => {
+         this.startFind(text, true, this[matchCase])   
+      }, 50)
       return true  
     }
     return false
@@ -376,9 +378,13 @@ function focusInput (doBlur = false) {
   }, 50)
 }
 
-function wrapInput (inputEle, caseEle, timeout = 50) {
+function wrapInputRefresh(inputEle, caseEle) {
   inputEle.type = 'password'
   caseEle.style['visibility'] = 'hidden'
+}
+
+function wrapInput(inputEle, caseEle, timeout = 50) {
+  wrapInputRefresh(inputEle, caseEle)
 
   setTimeout(() => {
     if (inputEle.type !== 'text') {
@@ -387,6 +393,7 @@ function wrapInput (inputEle, caseEle, timeout = 50) {
     }
   }, timeout)
 }
+
 function unwrapInput (inputEle, caseEle) {
   inputEle.type = 'text'
   caseEle.style['visibility'] = 'visible'
