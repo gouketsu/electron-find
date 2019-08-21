@@ -60,6 +60,11 @@ class FindInPage extends Find{
     this[config] = {}
     this[events] = []
     this.parentElement = options.parentElement ? options.parentElement : document.body
+    if (option.onBody) {
+      this.resultElement = document.body
+    } else {
+      this.resultElement = this.parentElement
+    }
     this.duration = (typeof options.duration === 'number' && options.duration > 0) ? options.duration : 300
     this.options = options
     this.options.preload ? this.initialize() : ''
@@ -227,10 +232,10 @@ function appendElement () {
   [this[findInput], this[findMatches], this[findCase], this[findBack], this[findForward], this[findClose]].forEach((item) => { 
     this[findBox].appendChild(item) 
   })
-  this.parentElement.appendChild(this[findBox])
+  this.resultElement.appendChild(this[findBox])
 }
 function removeElement () {
-  this.parentElement.removeChild(this[findBox])
+  this.resultElement.removeChild(this[findBox])
 }
 function creatEventHandler () {
   this[documentKeydown] = (function (e) {
