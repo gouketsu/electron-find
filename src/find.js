@@ -55,14 +55,14 @@ class Find extends EventEmitter {
   }
   
   findRefresh (matchCase = false) {
-    if (!this.isFinding()) throw new Error('Finding did not start yet !')
-    const forward = true
-    this[requestId] = this[wcs].findInPage(this[preText], {
-      forward,
-      matchCase
-    })
-    print(`[Find] refreshFind text=${this[preText]} forward=true matchCase=${matchCase}`)
-    
+    if (this.isFinding()) {
+      const forward = true
+      this[requestId] = this[wcs].findInPage(this[preText], {
+        forward,
+        matchCase
+      })
+      print(`[Find] refreshFind text=${this[preText]} forward=true matchCase=${matchCase}`)
+    }
   }
   findNext (forward, matchCase = false) {
     if (this.isFinding()) {
